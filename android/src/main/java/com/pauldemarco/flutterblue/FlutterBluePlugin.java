@@ -74,6 +74,8 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
     private MethodCall pendingCall;
     private Result pendingResult;
 
+    private static volatile boolean canWrite = true;
+
     /**
      * Plugin registration.
      */
@@ -331,6 +333,11 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
 
             case "writeCharacteristic":
             {
+                if (!canWrite) {
+                    result.success(false);
+                    break;
+                }
+                canWrite = false;
                 byte[] data = call.arguments();
                 Protos.WriteCharacteristicRequest request;
                 try {
@@ -367,7 +374,13 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
                     return;
                 }
 
-                result.success(null);
+                result.success(true);
+                break;
+            }
+
+            case "canWriteCharacteristic":
+            {
+                result.success(canWrite == true);
                 break;
             }
 
@@ -744,7 +757,7 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-            Log.d(TAG, "onConnectionStateChange: " + newState);
+            Log.d(TAG, "onConnectionStateChange: ");
             channel.invokeMethod("DeviceState", ProtoMaker.from(gatt.getDevice(), newState).toByteArray());
         }
 
@@ -774,7 +787,9 @@ public class FlutterBluePlugin implements MethodCallHandler, RequestPermissionsR
 
         @Override
         public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
-            Log.d(TAG, "onCharacteristicWrite: ");
+            Log.d(TAG, "onCharacteristicWrote: ");
+            canWrite = true;
+
             Protos.WriteCharacteristicRequest.Builder request = Protos.WriteCharacteristicRequest.newBuilder();
             request.setRemoteId(gatt.getDevice().getAddress());
             request.setCharacteristicUuid(characteristic.getUuid().toString());
