@@ -98,7 +98,7 @@ class BluetoothDevice {
   /// guaranteed and will return immediately with success.
   /// [CharacteristicWriteType.withResponse]: the method will return after the
   /// write operation has either passed or failed.
-  Future<bool> writeCharacteristic(
+  Future<Null> writeCharacteristic(
       BluetoothCharacteristic characteristic, List<int> value,
       {CharacteristicWriteType type =
           CharacteristicWriteType.withoutResponse}) async {
@@ -109,17 +109,14 @@ class BluetoothDevice {
       ..writeType = protos.WriteCharacteristicRequest_WriteType.valueOf(type.index)
       ..value = value;
 
-    // var result2 = await FlutterBlue.instance._channel
-    //     .invokeMethod('canWriteCharacteristic', request.writeToBuffer());
     var data = request.writeToBuffer();
     for (bool sent = false; !sent;) {
-      // print('waiting');
       sent = await FlutterBlue.instance._channel
           .invokeMethod('writeCharacteristic', data);
     }
 
     if (type == CharacteristicWriteType.withoutResponse) {
-      return true;
+      return;
     }
 
     return await FlutterBlue.instance._methodStream
