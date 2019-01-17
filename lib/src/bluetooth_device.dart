@@ -98,7 +98,8 @@ class BluetoothDevice {
   /// guaranteed and will return immediately with success.
   /// [CharacteristicWriteType.withResponse]: the method will return after the
   /// write operation has either passed or failed.
-  Future<Null> writeCharacteristic(BluetoothCharacteristic characteristic, List<int> value,
+  Future<bool> writeCharacteristic(
+      BluetoothCharacteristic characteristic, List<int> value,
       {CharacteristicWriteType type =
           CharacteristicWriteType.withoutResponse}) async {
     var request = protos.WriteCharacteristicRequest.create()
