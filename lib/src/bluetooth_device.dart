@@ -108,11 +108,17 @@ class BluetoothDevice {
       ..writeType = protos.WriteCharacteristicRequest_WriteType.valueOf(type.index)
       ..value = value;
 
-    var result = await FlutterBlue.instance._channel
-        .invokeMethod('writeCharacteristic', request.writeToBuffer());
+    // var result2 = await FlutterBlue.instance._channel
+    //     .invokeMethod('canWriteCharacteristic', request.writeToBuffer());
+    var data = request.writeToBuffer();
+    for (bool sent = false; !sent;) {
+      // print('waiting');
+      sent = await FlutterBlue.instance._channel
+          .invokeMethod('writeCharacteristic', data);
+    }
 
-    if(type == CharacteristicWriteType.withoutResponse) {
-      return result;
+    if (type == CharacteristicWriteType.withoutResponse) {
+      return true;
     }
 
     return await FlutterBlue.instance._methodStream
