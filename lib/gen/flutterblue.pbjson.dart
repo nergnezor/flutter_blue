@@ -1,7 +1,9 @@
 ///
 //  Generated code. Do not modify.
-///
-// ignore_for_file: non_constant_identifier_names,library_prefixes
+//  source: flutterblue.proto
+//
+// @dart = 2.3
+// ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
 
 const Int32Value$json = const {
   '1': 'Int32Value',
@@ -122,11 +124,12 @@ const BluetoothCharacteristic$json = const {
   '1': 'BluetoothCharacteristic',
   '2': const [
     const {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    const {'1': 'serviceUuid', '3': 2, '4': 1, '5': 9, '10': 'serviceUuid'},
-    const {'1': 'secondaryServiceUuid', '3': 3, '4': 1, '5': 9, '10': 'secondaryServiceUuid'},
-    const {'1': 'descriptors', '3': 4, '4': 3, '5': 11, '6': '.BluetoothDescriptor', '10': 'descriptors'},
-    const {'1': 'properties', '3': 5, '4': 1, '5': 11, '6': '.CharacteristicProperties', '10': 'properties'},
-    const {'1': 'value', '3': 6, '4': 1, '5': 12, '10': 'value'},
+    const {'1': 'remote_id', '3': 2, '4': 1, '5': 9, '10': 'remoteId'},
+    const {'1': 'serviceUuid', '3': 3, '4': 1, '5': 9, '10': 'serviceUuid'},
+    const {'1': 'secondaryServiceUuid', '3': 4, '4': 1, '5': 9, '10': 'secondaryServiceUuid'},
+    const {'1': 'descriptors', '3': 5, '4': 3, '5': 11, '6': '.BluetoothDescriptor', '10': 'descriptors'},
+    const {'1': 'properties', '3': 6, '4': 1, '5': 11, '6': '.CharacteristicProperties', '10': 'properties'},
+    const {'1': 'value', '3': 7, '4': 1, '5': 12, '10': 'value'},
   ],
 };
 
@@ -134,9 +137,10 @@ const BluetoothDescriptor$json = const {
   '1': 'BluetoothDescriptor',
   '2': const [
     const {'1': 'uuid', '3': 1, '4': 1, '5': 9, '10': 'uuid'},
-    const {'1': 'serviceUuid', '3': 2, '4': 1, '5': 9, '10': 'serviceUuid'},
-    const {'1': 'characteristicUuid', '3': 3, '4': 1, '5': 9, '10': 'characteristicUuid'},
-    const {'1': 'value', '3': 4, '4': 1, '5': 12, '10': 'value'},
+    const {'1': 'remote_id', '3': 2, '4': 1, '5': 9, '10': 'remoteId'},
+    const {'1': 'serviceUuid', '3': 3, '4': 1, '5': 9, '10': 'serviceUuid'},
+    const {'1': 'characteristicUuid', '3': 4, '4': 1, '5': 9, '10': 'characteristicUuid'},
+    const {'1': 'value', '3': 5, '4': 1, '5': 12, '10': 'value'},
   ],
 };
 
@@ -270,8 +274,8 @@ const SetNotificationResponse$json = const {
   ],
 };
 
-const OnNotificationResponse$json = const {
-  '1': 'OnNotificationResponse',
+const OnCharacteristicChanged$json = const {
+  '1': 'OnCharacteristicChanged',
   '2': const [
     const {'1': 'remote_id', '3': 1, '4': 1, '5': 9, '10': 'remoteId'},
     const {'1': 'characteristic', '3': 2, '4': 1, '5': 11, '6': '.BluetoothCharacteristic', '10': 'characteristic'},
@@ -294,6 +298,29 @@ const DeviceStateResponse_BluetoothDeviceState$json = const {
     const {'1': 'CONNECTING', '2': 1},
     const {'1': 'CONNECTED', '2': 2},
     const {'1': 'DISCONNECTING', '2': 3},
+  ],
+};
+
+const ConnectedDevicesResponse$json = const {
+  '1': 'ConnectedDevicesResponse',
+  '2': const [
+    const {'1': 'devices', '3': 1, '4': 3, '5': 11, '6': '.BluetoothDevice', '10': 'devices'},
+  ],
+};
+
+const MtuSizeRequest$json = const {
+  '1': 'MtuSizeRequest',
+  '2': const [
+    const {'1': 'remote_id', '3': 1, '4': 1, '5': 9, '10': 'remoteId'},
+    const {'1': 'mtu', '3': 2, '4': 1, '5': 13, '10': 'mtu'},
+  ],
+};
+
+const MtuSizeResponse$json = const {
+  '1': 'MtuSizeResponse',
+  '2': const [
+    const {'1': 'remote_id', '3': 1, '4': 1, '5': 9, '10': 'remoteId'},
+    const {'1': 'mtu', '3': 2, '4': 1, '5': 13, '10': 'mtu'},
   ],
 };
 

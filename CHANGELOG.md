@@ -1,3 +1,45 @@
+## 0.6.3+1
+* Fix compilation issue with iOS
+* Bump protobuf version to 1.0.0
+
+## 0.6.3
+* Update project files for Android and iOS
+* Remove dependency on protoc for iOS
+
+## 0.6.2
+* Add `mtu` and `requestMtu` to BluetoothDevice
+
+## 0.6.0+4
+* Fix duplicate characteristic notifications when connection lost.
+* Fix duplicate characteristic notifications when reconnecting.
+* Add minimum SDK version of 18 for the plugin.
+* Documentation updates
+
+## 0.6.0
+* **Breaking change**. API refactoring with RxDart (see example)
+* Log a more detailed warning at build time about the previous AndroidX migration.
+* Ensure that all channel calls to the Dart side from the Java side are done on the UI thread.
+  This change allows Transactions to work with upcoming Engine restrictions, which require
+  channel calls be made on the UI thread. Note this is an Android only change,
+  the iOS implementation was not impacted.
+
+## 0.5.0
+* **Breaking change**. Migrate from the deprecated original Android Support
+  Library to AndroidX. This shouldn't result in any functional changes, but it
+  requires any Android apps using this plugin to [also
+  migrate](https://developer.android.com/jetpack/androidx/migrate) if they're
+  using the original support library.
+
+## 0.4.2+1
+* Upgrade Android Gradle plugin to 3.3.0
+* Refresh iOS build files
+
+## 0.4.2
+* Set the verbosity of log messages with `setLogLevel`
+* Updated iOS and Android project files
+* `autoConnect` now configurable for Android
+* Various bug fixes
+
 ## 0.4.1
 * Fixed bug where setNotifyValue wasn't properly awaitable.
 * Various UI bug fixes to example app.

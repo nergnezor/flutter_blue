@@ -13,7 +13,9 @@
  #import "GPBProtocolBuffers_RuntimeSupport.h"
 #endif
 
- #import "Flutterblue.pbobjc.h"
+#import <stdatomic.h>
+
+#import "Flutterblue.pbobjc.h"
 // @@protoc_insertion_point(imports)
 
 #pragma clang diagnostic push
@@ -78,7 +80,9 @@ typedef struct ProtosInt32Value__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosInt32Value__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -121,7 +125,9 @@ typedef struct ProtosBluetoothState__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosBluetoothState__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -144,7 +150,7 @@ void SetProtosBluetoothState_State_RawValue(ProtosBluetoothState *message, int32
 #pragma mark - Enum ProtosBluetoothState_State
 
 GPBEnumDescriptor *ProtosBluetoothState_State_EnumDescriptor(void) {
-  static GPBEnumDescriptor *descriptor = NULL;
+  static _Atomic(GPBEnumDescriptor*) descriptor = nil;
   if (!descriptor) {
     static const char *valueNames =
         "Unknown\000Unavailable\000Unauthorized\000Turning"
@@ -164,7 +170,8 @@ GPBEnumDescriptor *ProtosBluetoothState_State_EnumDescriptor(void) {
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:ProtosBluetoothState_State_IsValidValue];
-    if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
+    GPBEnumDescriptor *expected = nil;
+    if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
       [worker release];
     }
   }
@@ -275,7 +282,9 @@ typedef struct ProtosAdvertisementData__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosAdvertisementData__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -329,7 +338,9 @@ typedef struct ProtosScanSettings__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosScanSettings__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -394,7 +405,9 @@ typedef struct ProtosScanResult__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosScanResult__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -447,7 +460,9 @@ typedef struct ProtosConnectRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosConnectRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -512,7 +527,9 @@ typedef struct ProtosBluetoothDevice__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosBluetoothDevice__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -535,7 +552,7 @@ void SetProtosBluetoothDevice_Type_RawValue(ProtosBluetoothDevice *message, int3
 #pragma mark - Enum ProtosBluetoothDevice_Type
 
 GPBEnumDescriptor *ProtosBluetoothDevice_Type_EnumDescriptor(void) {
-  static GPBEnumDescriptor *descriptor = NULL;
+  static _Atomic(GPBEnumDescriptor*) descriptor = nil;
   if (!descriptor) {
     static const char *valueNames =
         "Unknown\000Classic\000Le\000Dual\000";
@@ -551,7 +568,8 @@ GPBEnumDescriptor *ProtosBluetoothDevice_Type_EnumDescriptor(void) {
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:ProtosBluetoothDevice_Type_IsValidValue];
-    if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
+    GPBEnumDescriptor *expected = nil;
+    if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
       [worker release];
     }
   }
@@ -648,7 +666,9 @@ typedef struct ProtosBluetoothService__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosBluetoothService__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -661,6 +681,7 @@ typedef struct ProtosBluetoothService__storage_ {
 @implementation ProtosBluetoothCharacteristic
 
 @dynamic uuid;
+@dynamic remoteId;
 @dynamic serviceUuid;
 @dynamic secondaryServiceUuid;
 @dynamic descriptorsArray, descriptorsArray_Count;
@@ -670,6 +691,7 @@ typedef struct ProtosBluetoothService__storage_ {
 typedef struct ProtosBluetoothCharacteristic__storage_ {
   uint32_t _has_storage_[1];
   NSString *uuid;
+  NSString *remoteId;
   NSString *serviceUuid;
   NSString *secondaryServiceUuid;
   NSMutableArray *descriptorsArray;
@@ -693,10 +715,19 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
         .dataType = GPBDataTypeString,
       },
       {
+        .name = "remoteId",
+        .dataTypeSpecific.className = NULL,
+        .number = ProtosBluetoothCharacteristic_FieldNumber_RemoteId,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(ProtosBluetoothCharacteristic__storage_, remoteId),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
         .name = "serviceUuid",
         .dataTypeSpecific.className = NULL,
         .number = ProtosBluetoothCharacteristic_FieldNumber_ServiceUuid,
-        .hasIndex = 1,
+        .hasIndex = 2,
         .offset = (uint32_t)offsetof(ProtosBluetoothCharacteristic__storage_, serviceUuid),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
@@ -705,7 +736,7 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
         .name = "secondaryServiceUuid",
         .dataTypeSpecific.className = NULL,
         .number = ProtosBluetoothCharacteristic_FieldNumber_SecondaryServiceUuid,
-        .hasIndex = 2,
+        .hasIndex = 3,
         .offset = (uint32_t)offsetof(ProtosBluetoothCharacteristic__storage_, secondaryServiceUuid),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
@@ -723,7 +754,7 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
         .name = "properties",
         .dataTypeSpecific.className = GPBStringifySymbol(ProtosCharacteristicProperties),
         .number = ProtosBluetoothCharacteristic_FieldNumber_Properties,
-        .hasIndex = 3,
+        .hasIndex = 4,
         .offset = (uint32_t)offsetof(ProtosBluetoothCharacteristic__storage_, properties),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
@@ -732,7 +763,7 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
         .name = "value",
         .dataTypeSpecific.className = NULL,
         .number = ProtosBluetoothCharacteristic_FieldNumber_Value,
-        .hasIndex = 4,
+        .hasIndex = 5,
         .offset = (uint32_t)offsetof(ProtosBluetoothCharacteristic__storage_, value),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeBytes,
@@ -748,10 +779,12 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\002\002\013\000\003\024\000";
+        "\002\003\013\000\004\024\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -764,6 +797,7 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
 @implementation ProtosBluetoothDescriptor
 
 @dynamic uuid;
+@dynamic remoteId;
 @dynamic serviceUuid;
 @dynamic characteristicUuid;
 @dynamic value;
@@ -771,6 +805,7 @@ typedef struct ProtosBluetoothCharacteristic__storage_ {
 typedef struct ProtosBluetoothDescriptor__storage_ {
   uint32_t _has_storage_[1];
   NSString *uuid;
+  NSString *remoteId;
   NSString *serviceUuid;
   NSString *characteristicUuid;
   NSData *value;
@@ -792,10 +827,19 @@ typedef struct ProtosBluetoothDescriptor__storage_ {
         .dataType = GPBDataTypeString,
       },
       {
+        .name = "remoteId",
+        .dataTypeSpecific.className = NULL,
+        .number = ProtosBluetoothDescriptor_FieldNumber_RemoteId,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(ProtosBluetoothDescriptor__storage_, remoteId),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
         .name = "serviceUuid",
         .dataTypeSpecific.className = NULL,
         .number = ProtosBluetoothDescriptor_FieldNumber_ServiceUuid,
-        .hasIndex = 1,
+        .hasIndex = 2,
         .offset = (uint32_t)offsetof(ProtosBluetoothDescriptor__storage_, serviceUuid),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
@@ -804,7 +848,7 @@ typedef struct ProtosBluetoothDescriptor__storage_ {
         .name = "characteristicUuid",
         .dataTypeSpecific.className = NULL,
         .number = ProtosBluetoothDescriptor_FieldNumber_CharacteristicUuid,
-        .hasIndex = 2,
+        .hasIndex = 3,
         .offset = (uint32_t)offsetof(ProtosBluetoothDescriptor__storage_, characteristicUuid),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
@@ -813,7 +857,7 @@ typedef struct ProtosBluetoothDescriptor__storage_ {
         .name = "value",
         .dataTypeSpecific.className = NULL,
         .number = ProtosBluetoothDescriptor_FieldNumber_Value,
-        .hasIndex = 3,
+        .hasIndex = 4,
         .offset = (uint32_t)offsetof(ProtosBluetoothDescriptor__storage_, value),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeBytes,
@@ -829,10 +873,12 @@ typedef struct ProtosBluetoothDescriptor__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\002\002\013\000\003\022\000";
+        "\002\003\013\000\004\022\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -964,7 +1010,9 @@ typedef struct ProtosCharacteristicProperties__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosCharacteristicProperties__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1018,7 +1066,9 @@ typedef struct ProtosDiscoverServicesResult__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosDiscoverServicesResult__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1094,7 +1144,9 @@ typedef struct ProtosReadCharacteristicRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosReadCharacteristicRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1148,7 +1200,9 @@ typedef struct ProtosReadCharacteristicResponse__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosReadCharacteristicResponse__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1235,7 +1289,9 @@ typedef struct ProtosReadDescriptorRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosReadDescriptorRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1289,7 +1345,9 @@ typedef struct ProtosReadDescriptorResponse__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosReadDescriptorResponse__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1387,7 +1445,9 @@ typedef struct ProtosWriteCharacteristicRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosWriteCharacteristicRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1410,7 +1470,7 @@ void SetProtosWriteCharacteristicRequest_WriteType_RawValue(ProtosWriteCharacter
 #pragma mark - Enum ProtosWriteCharacteristicRequest_WriteType
 
 GPBEnumDescriptor *ProtosWriteCharacteristicRequest_WriteType_EnumDescriptor(void) {
-  static GPBEnumDescriptor *descriptor = NULL;
+  static _Atomic(GPBEnumDescriptor*) descriptor = nil;
   if (!descriptor) {
     static const char *valueNames =
         "WithResponse\000WithoutResponse\000";
@@ -1424,7 +1484,8 @@ GPBEnumDescriptor *ProtosWriteCharacteristicRequest_WriteType_EnumDescriptor(voi
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:ProtosWriteCharacteristicRequest_WriteType_IsValidValue];
-    if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
+    GPBEnumDescriptor *expected = nil;
+    if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
       [worker release];
     }
   }
@@ -1486,7 +1547,9 @@ typedef struct ProtosWriteCharacteristicResponse__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosWriteCharacteristicResponse__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1584,7 +1647,9 @@ typedef struct ProtosWriteDescriptorRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosWriteDescriptorRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1637,7 +1702,9 @@ typedef struct ProtosWriteDescriptorResponse__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosWriteDescriptorResponse__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1723,7 +1790,9 @@ typedef struct ProtosSetNotificationRequest__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosSetNotificationRequest__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1787,7 +1856,9 @@ typedef struct ProtosSetNotificationResponse__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosSetNotificationResponse__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1795,18 +1866,18 @@ typedef struct ProtosSetNotificationResponse__storage_ {
 
 @end
 
-#pragma mark - ProtosOnNotificationResponse
+#pragma mark - ProtosOnCharacteristicChanged
 
-@implementation ProtosOnNotificationResponse
+@implementation ProtosOnCharacteristicChanged
 
 @dynamic remoteId;
 @dynamic hasCharacteristic, characteristic;
 
-typedef struct ProtosOnNotificationResponse__storage_ {
+typedef struct ProtosOnCharacteristicChanged__storage_ {
   uint32_t _has_storage_[1];
   NSString *remoteId;
   ProtosBluetoothCharacteristic *characteristic;
-} ProtosOnNotificationResponse__storage_;
+} ProtosOnCharacteristicChanged__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -1817,31 +1888,33 @@ typedef struct ProtosOnNotificationResponse__storage_ {
       {
         .name = "remoteId",
         .dataTypeSpecific.className = NULL,
-        .number = ProtosOnNotificationResponse_FieldNumber_RemoteId,
+        .number = ProtosOnCharacteristicChanged_FieldNumber_RemoteId,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(ProtosOnNotificationResponse__storage_, remoteId),
+        .offset = (uint32_t)offsetof(ProtosOnCharacteristicChanged__storage_, remoteId),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "characteristic",
         .dataTypeSpecific.className = GPBStringifySymbol(ProtosBluetoothCharacteristic),
-        .number = ProtosOnNotificationResponse_FieldNumber_Characteristic,
+        .number = ProtosOnCharacteristicChanged_FieldNumber_Characteristic,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(ProtosOnNotificationResponse__storage_, characteristic),
+        .offset = (uint32_t)offsetof(ProtosOnCharacteristicChanged__storage_, characteristic),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
       },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[ProtosOnNotificationResponse class]
+        [GPBDescriptor allocDescriptorForClass:[ProtosOnCharacteristicChanged class]
                                      rootClass:[ProtosFlutterblueRoot class]
                                           file:ProtosFlutterblueRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(ProtosOnNotificationResponse__storage_)
+                                   storageSize:sizeof(ProtosOnCharacteristicChanged__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1895,7 +1968,9 @@ typedef struct ProtosDeviceStateResponse__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(ProtosDeviceStateResponse__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
-    NSAssert(descriptor == nil, @"Startup recursed!");
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
     descriptor = localDescriptor;
   }
   return descriptor;
@@ -1918,7 +1993,7 @@ void SetProtosDeviceStateResponse_State_RawValue(ProtosDeviceStateResponse *mess
 #pragma mark - Enum ProtosDeviceStateResponse_BluetoothDeviceState
 
 GPBEnumDescriptor *ProtosDeviceStateResponse_BluetoothDeviceState_EnumDescriptor(void) {
-  static GPBEnumDescriptor *descriptor = NULL;
+  static _Atomic(GPBEnumDescriptor*) descriptor = nil;
   if (!descriptor) {
     static const char *valueNames =
         "Disconnected\000Connecting\000Connected\000Discon"
@@ -1935,7 +2010,8 @@ GPBEnumDescriptor *ProtosDeviceStateResponse_BluetoothDeviceState_EnumDescriptor
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:ProtosDeviceStateResponse_BluetoothDeviceState_IsValidValue];
-    if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
+    GPBEnumDescriptor *expected = nil;
+    if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
       [worker release];
     }
   }
@@ -1953,6 +2029,163 @@ BOOL ProtosDeviceStateResponse_BluetoothDeviceState_IsValidValue(int32_t value__
       return NO;
   }
 }
+
+#pragma mark - ProtosConnectedDevicesResponse
+
+@implementation ProtosConnectedDevicesResponse
+
+@dynamic devicesArray, devicesArray_Count;
+
+typedef struct ProtosConnectedDevicesResponse__storage_ {
+  uint32_t _has_storage_[1];
+  NSMutableArray *devicesArray;
+} ProtosConnectedDevicesResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "devicesArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(ProtosBluetoothDevice),
+        .number = ProtosConnectedDevicesResponse_FieldNumber_DevicesArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(ProtosConnectedDevicesResponse__storage_, devicesArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeMessage,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[ProtosConnectedDevicesResponse class]
+                                     rootClass:[ProtosFlutterblueRoot class]
+                                          file:ProtosFlutterblueRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(ProtosConnectedDevicesResponse__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - ProtosMtuSizeRequest
+
+@implementation ProtosMtuSizeRequest
+
+@dynamic remoteId;
+@dynamic mtu;
+
+typedef struct ProtosMtuSizeRequest__storage_ {
+  uint32_t _has_storage_[1];
+  uint32_t mtu;
+  NSString *remoteId;
+} ProtosMtuSizeRequest__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "remoteId",
+        .dataTypeSpecific.className = NULL,
+        .number = ProtosMtuSizeRequest_FieldNumber_RemoteId,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(ProtosMtuSizeRequest__storage_, remoteId),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "mtu",
+        .dataTypeSpecific.className = NULL,
+        .number = ProtosMtuSizeRequest_FieldNumber_Mtu,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(ProtosMtuSizeRequest__storage_, mtu),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[ProtosMtuSizeRequest class]
+                                     rootClass:[ProtosFlutterblueRoot class]
+                                          file:ProtosFlutterblueRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(ProtosMtuSizeRequest__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - ProtosMtuSizeResponse
+
+@implementation ProtosMtuSizeResponse
+
+@dynamic remoteId;
+@dynamic mtu;
+
+typedef struct ProtosMtuSizeResponse__storage_ {
+  uint32_t _has_storage_[1];
+  uint32_t mtu;
+  NSString *remoteId;
+} ProtosMtuSizeResponse__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "remoteId",
+        .dataTypeSpecific.className = NULL,
+        .number = ProtosMtuSizeResponse_FieldNumber_RemoteId,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(ProtosMtuSizeResponse__storage_, remoteId),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "mtu",
+        .dataTypeSpecific.className = NULL,
+        .number = ProtosMtuSizeResponse_FieldNumber_Mtu,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(ProtosMtuSizeResponse__storage_, mtu),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeUInt32,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[ProtosMtuSizeResponse class]
+                                     rootClass:[ProtosFlutterblueRoot class]
+                                          file:ProtosFlutterblueRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(ProtosMtuSizeResponse__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    #if defined(DEBUG) && DEBUG
+      NSAssert(descriptor == nil, @"Startup recursed!");
+    #endif  // DEBUG
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
 
 
 #pragma clang diagnostic pop
